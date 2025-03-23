@@ -1,0 +1,23 @@
+.admin-panel {
+    height: 100vh;
+  }
+  
+  .sidebar {
+    height: 100vh;
+    position: fixed;
+  }
+  
+  .content {
+    margin-left: 200px; /* Adjust based on sidebar width */
+    padding: 20px;
+  }
+  
+  .nav-link {
+    font-size: 1rem;
+    padding: 10px;
+  }
+  
+  .nav-link:hover {
+    background-color: #f8f9fa;
+  }
+  
