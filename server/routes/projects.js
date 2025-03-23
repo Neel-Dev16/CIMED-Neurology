@@ -81,4 +81,68 @@ router.get('/:id', async (req, res) => {
     }
 });
 
+// Updated GET project details endpoint
+router.get('/:id', async (req, res) => {
+    const { id } = req.params;
+    const userRole = req.session.user?.role || 'student';
+
+    try {
+        // Get column access setting
+        const settingsResult = await pool.query(
+            'SELECT setting_value FROM system_settings WHERE setting_key = $1',
+            ['column_access_enabled']
+        );
+        const columnAccessEnabled = settingsResult.rows[0]?.setting_value ?? true;
+
+        const query = `
+            SELECT 
+                project_id,
+                title,
+                keywords,
+                observation,
+                scoping,
+                needs_statement,
+                state_of_art,
+                created_at,
+                CASE
+                    WHEN $1 = 'student' AND $2 = false 
+                    THEN 'Admin has disabled access to this resource'
+                    ELSE solution
+                END as solution,
+                CASE
+                    WHEN $1 = 'student' AND $2 = false 
+                    THEN 'Admin has disabled access to this resource'
+                    ELSE solution_category
+                END as solution_category,
+                CASE
+                    WHEN $1 = 'student' AND $2 = false 
+                    THEN 'Admin has disabled access to this resource'
+                    ELSE literature
+                END as literature,
+                CASE
+                    WHEN $1 = 'student' AND $2 = false 
+                    THEN 'Admin has disabled access to this resource'
+                    ELSE acknowledgement
+                END as acknowledgement
+            FROM projects
+            WHERE project_id = $3
+        `;
+
+        const result = await pool.query(query, [
+            userRole,
+            columnAccessEnabled,
+            id
+        ]);
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ message: 'Project not found' });
+        }
+
+        res.status(200).json(result.rows[0]);
+    } catch (error) {
+        console.error('Error fetching project details:', error);
+        res.status(500).json({ message: 'Server error' });
+    }
+});
+
 module.exports = router;

@@ -62,4 +62,65 @@ router.delete('/projects/:id', async (req, res) => {
   }
 });
 
+// New settings routes
+router.get('/settings/student_login_enabled', async (req, res) => {
+    try {
+      const result = await pool.query(
+        'SELECT setting_value FROM system_settings WHERE setting_key = $1',
+        ['student_login_enabled']
+      );
+      res.json(result.rows[0]?.setting_value ?? true);
+    } catch (error) {
+      console.error('Error fetching setting:', error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  });
+  
+  router.put('/settings/student_login_enabled', async (req, res) => {
+    try {
+      const { value } = req.body;
+      
+      await pool.query(`
+        INSERT INTO system_settings (setting_key, setting_value)
+        VALUES ('student_login_enabled', $1)
+        ON CONFLICT (setting_key)
+        DO UPDATE SET setting_value = EXCLUDED.setting_value
+      `, [value]);
+  
+      res.json({ success: true });
+    } catch (error) {
+      console.error('Error updating setting:', error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  });
+  router.get('/settings/column_access_enabled', async (req, res) => {
+    try {
+      const result = await pool.query(
+        'SELECT setting_value FROM system_settings WHERE setting_key = $1',
+        ['column_access_enabled']
+      );
+      res.json(result.rows[0]?.setting_value ?? true);
+    } catch (error) {
+      console.error('Error fetching column access setting:', error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  });
+  
+  router.put('/settings/column_access_enabled', async (req, res) => {
+    try {
+      const { value } = req.body;
+      
+      await pool.query(`
+        INSERT INTO system_settings (setting_key, setting_value)
+        VALUES ('column_access_enabled', $1)
+        ON CONFLICT (setting_key) DO UPDATE SET setting_value = EXCLUDED.setting_value
+      `, [value]);
+  
+      res.json({ success: true });
+    } catch (error) {
+      console.error('Error updating column access:', error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  });  
+
 module.exports = router;
