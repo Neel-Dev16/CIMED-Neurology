@@ -1,53 +1,53 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import Login from "./pages/Login";
+import Register from "./pages/Register";  // Import the new Register component
 import SearchPage from "./pages/SearchPage";
-import AdminPanel from "./pages/AdminPanel"; // Import AdminPanel component
-import AddEntry from "./pages/AddEntry"; // Import AddEntry component
-import ProjectDetails from "./pages/ProjectDetails"; // Import Project Details Page
-import ProtectedRoute from "./components/ProtectedRoute"; // Import ProtectedRoute
+import AdminPanel from "./pages/AdminPanel";
+import AddEntry from "./pages/AddEntry";
+import ProjectDetails from "./pages/ProjectDetails";
+
+console.log("AdminPanel component:", AdminPanel);
 
 function App() {
   return (
     <Router>
       <Routes>
-        
-       {/* Public Routes */}
-       <Route path="/" element={<LandingPage />} />
-       <Route path="/login" element={<Login />} />
-       
-       {/* Protected Routes */}
-       <Route 
-         path="/search"
-         element={
-           <ProtectedRoute>
-             <SearchPage />
-           </ProtectedRoute>
-         }
-       />
-       <Route 
-         path="/admin-panel"
-         element={
-           <ProtectedRoute>
-             <AdminPanel />
-           </ProtectedRoute>
-         }
-       />
-       <Route 
-         path="/admin-panel/add-entry"
-         element={
-           <ProtectedRoute>
-             <AddEntry />
-           </ProtectedRoute>
-         }
-       />
+        {/* Public Routes */}
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />  {/* New Register route */}
 
-       {/* Dynamic Route */}
-       <Route path="/project/:id" element={<ProjectDetails />} />
-     </Routes>
-   </Router>
- );
+        {/* Semi-protected Routes (basic checks only) */}
+        <Route path="/search" element={<SearchPage />} />
+        <Route 
+          path="/admin-panel" 
+          element={
+            (() => {
+              const user = JSON.parse(localStorage.getItem("user"));
+              console.log("Admin panel route accessed, user:", user);
+              return user?.role === "admin" ? <AdminPanel /> : <Navigate to="/search" />;
+            })()
+          } 
+        />
+        <Route 
+          path="/admin-panel/add-entry" 
+          element={
+            JSON.parse(localStorage.getItem("user"))?.role === "admin" 
+              ? <AddEntry /> 
+              : <Navigate to="/search" />
+          } 
+        />
+
+        {/* Dynamic Route */}
+        <Route path="/project/:id" element={<ProjectDetails />} />
+        
+        {/* Fallback Route */}
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;

@@ -37,6 +37,10 @@ app.use('/api/projects', projectsRoute);
 const adminRoutes = require('./routes/adminRoutes');
 app.use('/api/admin', adminRoutes);
 
+// New registration route
+const registrationRoute = require('./routes/registration');
+app.use('/api/register', registrationRoute);
+
 // Test route
 app.get('/', (req, res) => {
     res.send('API is running...');

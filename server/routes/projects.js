@@ -43,13 +43,16 @@ router.post('/search', async (req, res) => {
             `;
         } else {
             query = `
-                SELECT 
-                    project_id,
-                    ts_headline('english', ${filterColumn}, to_tsquery('english', $1)) AS ${filterColumn}
-                FROM projects
-                WHERE ${filterColumn} ILIKE '%' || $1 || '%';
-            `;
-        }
+            SELECT 
+                project_id,
+                ts_headline('english', title, to_tsquery('english', $1)) AS title,
+                ts_headline('english', keywords, to_tsquery('english', $1)) AS keywords,
+                ts_headline('english', needs_statement, to_tsquery('english', $1)) AS needs_statement,
+                ts_headline('english', solution, to_tsquery('english', $1)) AS solution
+            FROM projects
+            WHERE ${filterColumn} ILIKE '%' || $1 || '%';
+        `;
+    }
 
         const values = [processedSearchTerm];
         const result = await pool.query(query, values);

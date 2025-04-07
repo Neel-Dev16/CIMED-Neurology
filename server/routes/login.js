@@ -20,7 +20,9 @@ router.post('/', async (req, res) => {
         );
 
         if (userResult.rows.length === 0) {
-            return res.status(404).json({ message: 'User not found' });
+            return res.status(404).json({ 
+                message: 'User not registered. Please sign up first.' 
+            });
         }
 
         const user = userResult.rows[0];
@@ -29,7 +31,7 @@ router.post('/', async (req, res) => {
             return res.status(401).json({ message: 'Invalid credentials' });
         }
 
-        // Check login restriction
+        // Check login restriction for students
         if (!studentLoginEnabled && user.role === 'student') {
             return res.status(403).json({ 
                 message: 'Student logins are currently disabled' 
@@ -39,6 +41,8 @@ router.post('/', async (req, res) => {
         req.session.user = {
             user_id: user.user_id,
             first_name: user.first_name,
+            last_name: user.last_name,
+            university_email: user.university_email,
             role: user.role,
         };
 

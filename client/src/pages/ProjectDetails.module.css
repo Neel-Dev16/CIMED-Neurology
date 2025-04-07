@@ -1,0 +1,522 @@
+/* Project Details Page Styles */
+.pageWrapper {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    font-family: "Source Sans Pro", Arial, sans-serif;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* ==================== HEADER SECTION ==================== */
+  .pageHeader {
+    width: 100%;
+    background-color: white;
+    position: relative;
+    z-index: 10;
+  }
+  
+  .orangeTopBar {
+    height: 10px;
+    background-color: #ff5f05;
+    width: 100%;
+  }
+  
+  .headerContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  
+  .headerLeft {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .universityLink {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+  
+  .illinoisLogoBox {
+    width: 40px;
+    height: 40px;
+    background-color: #13294b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    flex-shrink: 0;
+  }
+  
+  .illinoisLogo {
+    width: 25px;
+    height: auto;
+  }
+  
+  .universityName {
+    color: #13294b;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  
+  .collegeNameLink {
+    text-decoration: none;
+  }
+  
+  .collegeName {
+    color: #13294b;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  
+  .headerRight {
+    display: flex;
+    align-items: center;
+  }
+  
+  .headerBorder {
+    width: 100%;
+    height: 1px;
+    background-color: #ddd;
+  }
+  
+  .userProfile {
+    position: relative;
+  }
+  
+  .profileButton {
+    display: flex;
+    align-items: center;
+    background-color: #13294b;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .profileButton:hover {
+    background-color: #1a3b6d;
+  }
+  
+  .profileIcon {
+    font-size: 20px;
+    margin-right: 8px;
+  }
+  
+  .profileName {
+    font-size: 16px;
+  }
+  
+  .profileDropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    min-width: 180px;
+    z-index: 100;
+    margin-top: 5px;
+    overflow: hidden;
+  }
+  
+  .dropdownItem {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    color: #13294b;
+  }
+  
+  .dropdownItem:hover {
+    background-color: #f5f5f5;
+  }
+  
+  .dropdownIcon {
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  
+  /* Main Content Styles */
+  .mainContent {
+    flex: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px 20px 60px;
+    width: 100%;
+  }
+  
+  .actionBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+  
+  .backButton {
+    display: flex;
+    align-items: center;
+    background-color: #e84a27; /* UIUC Orange */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+  }
+  
+  .backButton:hover {
+    background-color: #ff5f05;
+    transform: translateY(-2px);
+  }
+  
+  .backIcon {
+    margin-right: 8px;
+    font-size: 14px;
+  }
+  
+  .dateInfo {
+    color: #666;
+    font-size: 14px;
+    font-style: italic;
+  }
+  
+  .projectHeader {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .projectTitle {
+    font-size: 36px;
+    font-weight: 700;
+    color: #13294b;
+    margin-bottom: 16px;
+  }
+  
+  .keywordsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .keywordTag {
+    background-color: #e8eeff;
+    color: #13294b;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+  
+  /* Cards Grid Layout */
+  .cardsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 24px;
+  }
+  
+  .card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-top: 3px solid #e84a27; /* UIUC Orange border */
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cardHeader {
+    background-color: #f8f9fa;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .cardIcon {
+    color: #e84a27; /* UIUC Orange */
+    font-size: 20px;
+    margin-right: 12px;
+  }
+  
+  .cardTitle {
+    font-size: 18px;
+    font-weight: 600;
+    color: #13294b; /* UIUC Blue */
+    margin: 0;
+  }
+  
+  .cardContent {
+    padding: 20px;
+    flex-grow: 1;
+    line-height: 1.6;
+  }
+  
+  .cardContent p {
+    margin: 0;
+    color: #444;
+  }
+  
+  /* Literature Links */
+  .literatureLinks {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .externalLink {
+    display: inline-flex;
+    align-items: center;
+    color: #13294b;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+  
+  .externalLink:hover {
+    color: #e84a27;
+    text-decoration: underline;
+  }
+  
+  .linkIcon {
+    font-size: 12px;
+    margin-left: 6px;
+  }
+  
+  /* Loading and Error States */
+  .loadingContainer,
+  .errorContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .loadingSpinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid rgba(19, 41, 75, 0.1);
+    border-radius: 50%;
+    border-top-color: #13294b;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+  }
+  
+  .errorMessage {
+    color: #d32f2f;
+    background-color: #ffebee;
+    padding: 16px 24px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  /* ==================== FOOTER SECTION ==================== */
+  .siteFooter {
+    background-color: #f8f8f8;
+    padding: 30px 0;
+    width: 100%;
+    color: #333;
+    margin-top: auto;
+  }
+  
+  .footerContainer {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 20px;
+  }
+  
+  .footerLeft {
+    flex: 1;
+    min-width: 280px;
+    margin-right: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .footerLogoContainer {
+    display: block;
+    margin-bottom: 15px;
+    align-self: flex-start;
+  }
+  
+  .footerLogo {
+    max-width: 180px;
+    height: auto;
+  }
+  
+  .socialIcons {
+    display: flex;
+    margin-bottom: 15px;
+    align-self: flex-start;
+  }
+  
+  .socialIcon {
+    color: #13294b;
+    font-size: 18px;
+    margin-right: 15px;
+    transition: color 0.3s ease;
+  }
+  
+  .socialIcon:hover {
+    color: #e84a27;
+  }
+  
+  .contactInfo {
+    color: #333;
+    line-height: 1.4;
+    font-size: 14px;
+    align-self: flex-start;
+  }
+  
+  .contactInfo p {
+    margin-bottom: 4px;
+  }
+  
+  .contactInfo a {
+    color: #13294b;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .contactInfo a:hover {
+    color: #e84a27;
+    text-decoration: underline;
+  }
+  
+  .footerRight {
+    flex: 1;
+    min-width: 230px;
+    padding-left: 15px;
+  }
+  
+  .connectHeading {
+    color: #333;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  .footerDivider {
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    margin-bottom: 15px;
+  }
+  
+  .connectLinks {
+    list-style: none;
+    font-size: 14px;
+  }
+  
+  .connectLinks li {
+    margin-bottom: 8px;
+  }
+  
+  .connectLinks a {
+    color: #13294b;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .connectLinks a:hover {
+    color: #e84a27;
+    text-decoration: underline;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .headerContent {
+      flex-direction: column;
+    }
+  
+    .headerRight {
+      margin-top: 15px;
+      align-self: flex-end;
+    }
+  
+    .projectTitle {
+      font-size: 28px;
+    }
+  
+    .cardsGrid {
+      grid-template-columns: 1fr;
+    }
+  
+    .actionBar {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+    }
+  
+    .dateInfo {
+      align-self: flex-end;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .universityName {
+      font-size: 14px;
+    }
+  
+    .collegeName {
+      font-size: 20px;
+    }
+  
+    .projectTitle {
+      font-size: 24px;
+    }
+  
+    .cardHeader {
+      padding: 12px 16px;
+    }
+  
+    .cardContent {
+      padding: 16px;
+    }
+  
+    .keywordTag {
+      font-size: 12px;
+      padding: 4px 12px;
+    }
+  }
+  
+      
