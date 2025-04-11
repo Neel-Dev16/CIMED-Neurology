@@ -1,7 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { FaTwitter, FaInstagram, FaFacebook, FaLinkedin } from "react-icons/fa"
 import "./Register.css";
 
@@ -199,18 +198,18 @@ const Register = () => {
                 <img src="/images/footer.png" alt="Carle Illinois College of Medicine Logo" className="footer-logo" />
               </a>
               <div className="social-icons">
-                <a href="#" className="social-icon">
-                  <FaTwitter />
-                </a>
-                <a href="#" className="social-icon">
-                  <FaInstagram />
-                </a>
-                <a href="#" className="social-icon">
-                  <FaFacebook />
-                </a>
-                <a href="#" className="social-icon">
-                  <FaLinkedin />
-                </a>
+              <a href="https://twitter.com/illinoismed" className="social-icon">
+                <FaTwitter />
+              </a>
+              <a href="https://www.instagram.com/carleillinoismed/" className="social-icon">
+                <FaInstagram />
+              </a>
+              <a href="https://www.facebook.com/illinoismed/" className="social-icon">
+                <FaFacebook />
+              </a>
+              <a href="https://www.linkedin.com/company/illinoismed/" className="social-icon">
+                <FaLinkedin />
+              </a>
               </div>
               <div className="contact-info">
                 <p>506 South Mathews Ave</p>
@@ -227,15 +226,15 @@ const Register = () => {
               <h3 className="connect-heading">Connect</h3>
               <div className="footer-divider"></div>
               <ul className="connect-links">
-                <li>
-                  <a href="#">Admissions</a>
-                </li>
-                <li>
-                  <a href="#">Carle Health</a>
-                </li>
-                <li>
-                  <a href="#">University of Illinois College of Medicine at Urbana-Champaign</a>
-                </li>
+              <li>
+                <a href="https://carleillinoiscollegeofmedicine.as.me/Admissions">Admissions</a>
+              </li>
+              <li>
+                <a href="http://carle.org/">Carle Health</a>
+              </li>
+              <li>
+                <a href="https://medicine.uic.edu/about/urbana/">University of Illinois College of Medicine at Urbana-Champaign</a>
+              </li>
               </ul>
             </div>
           </div>
@@ -245,181 +244,3 @@ const Register = () => {
   }
   
   export default Register
-
-/*const Register = () => {
-  const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    universityNetId: "",
-    universityEmail: "",
-    phone: "",
-    password: "",
-    confirmPassword: ""
-  });
-  const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate();
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const validateForm = () => {
-    const { 
-      firstName, 
-      lastName, 
-      universityNetId, 
-      universityEmail, 
-      phone, 
-      password, 
-      confirmPassword 
-    } = formData;
-
-    if (!firstName || !lastName || !universityNetId || !universityEmail || !phone || !password || !confirmPassword) {
-      setErrorMessage("All fields are required");
-      return false;
-    }
-
-    if (!universityEmail.endsWith("@illinois.edu")) {
-      setErrorMessage("Only @illinois.edu emails are allowed");
-      return false;
-    }
-
-    if (password !== confirmPassword) {
-      setErrorMessage("Passwords do not match");
-      return false;
-    }
-
-    if (!/^\d{10}$/.test(phone)) {
-      setErrorMessage("Phone must be 10 digits");
-      return false;
-    }
-
-    return true;
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setErrorMessage("");
-
-    if (!validateForm()) return;
-
-    try {
-      await axios.post("http://localhost:5001/api/register", {
-        ...formData,
-        role: "student",
-        status: "active"
-      });
-      alert("Registration successful! Redirecting to login...");
-      navigate("/login");
-    } catch (error) {
-      console.error("Registration error:", error);
-      setErrorMessage(error.response?.data?.message || "Registration failed");
-    }
-  };
-
-  return (
-    <div className="centered-container">
-      <Container>
-        <Row className="justify-content-center">
-          <Col xs={12} md={6}>
-            <h2 className="text-center mb-4">User Registration</h2>
-            {errorMessage && <p className="text-danger text-center">{errorMessage}</p>}
-            
-            <Form onSubmit={handleSubmit}>
-              <Form.Group className="mb-3" controlId="firstName">
-                <Form.Label>First Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="firstName"
-                  value={formData.firstName}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="lastName">
-                <Form.Label>Last Name</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="lastName"
-                  value={formData.lastName}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="universityNetId">
-                <Form.Label>University NetID</Form.Label>
-                <Form.Control
-                  type="text"
-                  name="universityNetId"
-                  value={formData.universityNetId}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="universityEmail">
-                <Form.Label>University Email</Form.Label>
-                <Form.Control
-                  type="email"
-                  name="universityEmail"
-                  value={formData.universityEmail}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="phone">
-                <Form.Label>Phone Number</Form.Label>
-                <Form.Control
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="password">
-                <Form.Label>Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-
-              <Form.Group className="mb-3" controlId="confirmPassword">
-                <Form.Label>Confirm Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  name="confirmPassword"
-                  value={formData.confirmPassword}
-                  onChange={handleChange}
-                  required
-                />
-              </Form.Group>
-
-              <Button variant="primary" type="submit" className="w-100 mb-3">
-                Register
-              </Button>
-            </Form>
-
-            <p className="text-center mt-3">
-              Already have an account?{" "}
-              <Button variant="link" onClick={() => navigate("/login")}>
-                Login here
-              </Button>
-            </p>
-          </Col>
-        </Row>
-      </Container>
-    </div>
-  );
-};
-
-export default Register;
-*/

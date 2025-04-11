@@ -85,11 +85,55 @@
   border-radius: 4px;
   font-size: 16px;
   transition: border-color 0.3s;
+  background-color: white;
+  color: #333; /* Dark text color */
+}
+
+.form-group input::placeholder {
+  color: #666; /* Darker placeholder text */
 }
 
 .form-group input:focus {
   border-color: #13294b;
   outline: none;
+}
+
+/* Password input container */
+.password-input-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Password toggle button */
+.password-toggle {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #666;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  z-index: 10;
+}
+
+.password-toggle:hover {
+  color: #13294b;
+}
+
+.password-toggle:focus {
+  outline: none;
+}
+
+/* Adjust input padding to make room for the icon */
+.password-input-container input {
+  padding-right: 45px;
+  width: 100%;
 }
 
 .submit-button {
@@ -151,31 +195,3 @@
   }
 }
 
-
-
-/*body {
-    background-color: #f8f9fa;
-  }
-  
-  .container {
-    margin-top: 100px;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2 {
-    color: #333333;
-  }
-  
-  .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-  }
-  
-  .btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
-  }
-*/  

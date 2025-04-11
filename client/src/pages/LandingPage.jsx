@@ -1,10 +1,9 @@
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import "./LandingPage.css"
 import { FaTwitter, FaInstagram, FaFacebook, FaLinkedin } from "react-icons/fa"  
+
 const LandingPage = () => {
   const navigate = useNavigate();
-
   const handleNavigate = () => {
     navigate('/login');
   };
@@ -35,7 +34,7 @@ const LandingPage = () => {
         </div>
         <div className="hero-content">
           <h2 className="hero-title">
-            The forward design of Human Health begins at the world's first engineering-based College of Medicine.
+            The forward design of Human Health begins at the world&apos;s first engineering-based College of Medicine.
           </h2>
           <button className="primary-button" onClick={handleNavigate}>Go to Login</button>
         </div>
@@ -49,16 +48,16 @@ const LandingPage = () => {
               <img src="/images/footer.png" alt="Carle Illinois College of Medicine Logo" className="footer-logo" />
             </a>
             <div className="social-icons">
-              <a href="#" className="social-icon">
+              <a href="https://twitter.com/illinoismed" className="social-icon">
                 <FaTwitter />
               </a>
-              <a href="#" className="social-icon">
+              <a href="https://www.instagram.com/carleillinoismed/" className="social-icon">
                 <FaInstagram />
               </a>
-              <a href="#" className="social-icon">
+              <a href="https://www.facebook.com/illinoismed/" className="social-icon">
                 <FaFacebook />
               </a>
-              <a href="#" className="social-icon">
+              <a href="https://www.linkedin.com/company/illinoismed/" className="social-icon">
                 <FaLinkedin />
               </a>
             </div>
@@ -78,13 +77,13 @@ const LandingPage = () => {
             <div className="footer-divider"></div>
             <ul className="connect-links">
               <li>
-                <a href="#">Admissions</a>
+                <a href="https://carleillinoiscollegeofmedicine.as.me/Admissions">Admissions</a>
               </li>
               <li>
-                <a href="#">Carle Health</a>
+                <a href="http://carle.org/">Carle Health</a>
               </li>
               <li>
-                <a href="#">University of Illinois College of Medicine at Urbana-Champaign</a>
+                <a href="https://medicine.uic.edu/about/urbana/">University of Illinois College of Medicine at Urbana-Champaign</a>
               </li>
             </ul>
           </div>
@@ -93,5 +92,4 @@ const LandingPage = () => {
     </div>
   )
 }
-
 export default LandingPage
